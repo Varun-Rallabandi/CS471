@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request, session
+from flask import Flask, redirect, render_template, json, request, session
 from flaskext.mysql import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -36,12 +36,13 @@ def validateLogin():
         _username = request.form['inputEmail']
         _password = request.form['inputPassword']
         con = mysql.connect()
+        cursor = con.cursor()
         cursor.callproc('sp_validateLogin', (_username,))
         data = cursor.fetchall()
         if len(data) > 0:
             if check_password_hash(str(data[0][3]), _password):
                 session['user'] = data[0][0]
-                return redirect('/userHome')
+                return redirect('/userhome')
             else:
                 return render_template('error.html', error='Wrong Email address or Password')
         else:
@@ -64,8 +65,8 @@ def signUp():
 
             conn = mysql.connect()
             cursor = conn.cursor()
-            #_hashed_password = generate_password_hash(_password)
-            cursor.callproc('sp_createUser', (_name, _email, _password))
+            _hashed_password = generate_password_hash(_password)
+            cursor.callproc('sp_createUser', (_name, _email, _hashed_password))
             data = cursor.fetchall()
 
             if len(data) == 0:
