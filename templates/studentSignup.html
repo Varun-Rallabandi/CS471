@@ -49,7 +49,7 @@
 			<div class="bg-light rounded-3 mb-4 p-5">
 				<div class="container-fluid py-5">
 					<h1 class="text-center fw-bold display-5">Sign up as a student!</h1>
-					<form id="form-signin" action="/api/signup" method="POST">
+					<form id="form-signin" action="/api/studentSignup" method="POST">
 						        <label for="inputName" class="sr-only">Name</label>
 						        <input
 							type="name"
@@ -96,14 +96,14 @@
 						  <input type="checkbox" name="time2" id="time2" value="time2"  /><label for="time2">Time B: 12 PM - 2 PM</label><br />
 						  <input type="checkbox" name="time3" id="time3" value="time3" /><label for="time3">Time C: 2 PM - 4 PM</label><br />
 						  <input type="checkbox" name="time4" id="time4" value="time4" /><label for="time4">Time D: 4 PM - 6 PM</label><br />
-					</fieldset>
-					<br>
-					<fieldset>
-						<legend>Would you like these tutoring sessions to repreat throughout the term?</legend>
-						<input type="radio" name="repreat" id="repeat" value="repeat" /><label for="repeat">No</label> &nbsp;
-						<input type="radio" name="repreat" id="repeat" value="repeat"  /><label for="repeat">Yes</label><br />
-				  </fieldset>
-					  <br><br>                  
+					 </fieldset>
+					 <br>
+					 <fieldset>
+						<legend>Would you like these tutoring sessions to repeat throughout the term?</legend>
+						<input type="radio" name="repeat" id="repeat" value="repeat" /><label for="repeat">No</label> &nbsp;
+						<input type="radio" name="repeat" id="repeat" value="repeat"  /><label for="repeat">Yes</label>
+					 </fieldset>					
+					   <br><br>                  
 						<button
 							class="btn btn-lg btn-primary btn-block"
 							type="submit"
@@ -129,7 +129,7 @@
 				.addEventListener("submit", async function (e) {
 					e.preventDefault();
 					console.log(new URLSearchParams(new FormData(e.target)).toString());
-					const res = await fetch("/api/signup", {
+					const res = await fetch("/api/studentSignup", {
 						body: new URLSearchParams(new FormData(e.target)).toString(),
 						method: "POST",
 						headers: {
