@@ -26,7 +26,7 @@
 						href="/"
 						class="text-dark text-decoration-none mb-3 mb-md-0 d-flex align-items-center me-md-auto"
 					>
-						<span class="fs-4">Python Flask App</span>
+						<span class="fs-4">MyTutor5000</span>
 					</a>
 
 					<ul class="nav nav-pills">
@@ -48,7 +48,7 @@
 			</div>
 			<div class="bg-light rounded-3 mb-4 p-5">
 				<div class="container-fluid py-5">
-					<h1 class="text-center fw-bold display-5">Bucket List App</h1>
+					<h1 class="text-center fw-bold display-5">Sign up as a student!</h1>
 					<form id="form-signin" action="/api/signup" method="POST">
 						        <label for="inputName" class="sr-only">Name</label>
 						        <input
@@ -81,7 +81,30 @@
 							placeholder="Password"
 							required
 						/>
-						                  <button
+						<br>
+						<fieldset>
+							<legend>Please select which classes you would like to be tutored in</legend>
+							<input type="checkbox" name="class1" id="class1" value="class1" /><label for="class1">MATH 101 - Calc 1</label><br />
+							<input type="checkbox" name="class2" id="class2" value="class2"  /><label for="class2">PHSY 101 - Physics 1</label><br />
+							<input type="checkbox" name="class3" id="class3" value="class3" /><label for="class3">COMM 101 - Reading</label><br />
+							<input type="checkbox" name="class4" id="class4" value="class4" /><label for="class4">CS 471 - Software Engineering</label><br />
+					  </fieldset>
+					  <br>
+					  <fieldset>
+						  <legend>Please select the times you are available</legend>
+						  <input type="checkbox" name="time1" id="time1" value="time1" /><label for="time1">Time A: 10 AM - 12 PM</label><br />
+						  <input type="checkbox" name="time2" id="time2" value="time2"  /><label for="time2">Time B: 12 PM - 2 PM</label><br />
+						  <input type="checkbox" name="time3" id="time3" value="time3" /><label for="time3">Time C: 2 PM - 4 PM</label><br />
+						  <input type="checkbox" name="time4" id="time4" value="time4" /><label for="time4">Time D: 4 PM - 6 PM</label><br />
+					</fieldset>
+					<br>
+					<fieldset>
+						<legend>Would you like these tutoring sessions to repreat throughout the term?</legend>
+						<input type="radio" name="repreat" id="repeat" value="repeat" /><label for="repeat">No</label> &nbsp;
+						<input type="radio" name="repreat" id="repeat" value="repeat"  /><label for="repeat">Yes</label><br />
+				  </fieldset>
+					  <br><br>                  
+						<button
 							class="btn btn-lg btn-primary btn-block"
 							type="submit"
 						>
@@ -94,7 +117,7 @@
 			        
 			<footer class="footer">
 				            
-				<p>&copy; Company 2022</p>
+				<p>&copy; Team 2 Spring 2023</p>
 				        
 			</footer>
 
