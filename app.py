@@ -13,11 +13,16 @@ import smtplib
 email_sender = 'tutorg76@gmail.com'
 email_password = 'agmssublzuxxrany'
 
-email_receiver = 'lope8204@kettering.edu'
+email_receiver = 'tade2477@kettering.edu'
 
-subject = "You got hacked! :)"
+subject = "WORK ON THE FUCKING PROJECT"
 body = """
-You need to send $10000 to TutorG 5000 Company. Jk this is yo boi testing if this works. 
+Every time this email is ignored, its a $10 fine. 
+Hugs and Kisses - MyTutor5000 :)
+
+p.s Emily is coming for you >:(
+
+and come to sac meeting - Varun
 """
 
 em = EmailMessage()
@@ -89,7 +94,7 @@ def studentHome():
 
 @app.route('/test')
 def test():
-        return render_template('signuptemp.html')
+        return render_template('tutorSignup.html')
 
 
 @app.route('/logout')
