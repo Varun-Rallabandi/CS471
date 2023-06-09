@@ -145,9 +145,9 @@ def validateLogin():
         cursor.close()
         con.close()
 
-@app.route('/api/studentSignup',methods=['POST'])
+@app.route('/api/studentSignup', methods=['POST'])
 def studentSignUp():
-     # read the posted values from the UI 
+    # read the posted values from the UI 
     _name = request.form['inputName']
     _email = request.form['inputEmail']
     _password = request.form['inputPassword']
@@ -160,15 +160,12 @@ def studentSignUp():
     _time3 = request.form['time3']
     _time4 = request.form['time4']
     _repeat = request.form['repeat']
-    
 
-     # validate the received values
+    # validate the received values
     if _name and _email and _password and _class1 and _class2 and _class3 and _class4 and _time1 and _time2 and _time3 and _time4 and _repeat:
-
         conn = mysql.connect()
         cursor = conn.cursor()
         _hashed_password = generate_password_hash(_password)
-        #return json.dumps({'message':len(_hashed_password)})
         cursor.callproc('sp_createStudent',(_name, _email, _hashed_password, _class1, _class2, _class3, _class4, _time1, _time2, _time3, _time4, _repeat))
         data = cursor.fetchall()
 
@@ -176,9 +173,10 @@ def studentSignUp():
             conn.commit()
             return json.dumps({'message':'User created successfully !'})
         else:
-            return json.dumps({'error':str(data[0])})
+            return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
     else:
-        return json.dumps({'html':'<span>Enter the required fields</span>'})
+        return json.dumps({'error': 'Enter the required fields'}), 400
+
 
 
 if __name__ == "__main__":
