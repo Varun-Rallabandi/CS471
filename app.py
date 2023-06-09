@@ -84,23 +84,23 @@ def userHome():
     
 @app.route('/tutorhome')
 def tutorHome():
-    #if session.get('user'):
+    if session.get('user'):
         return render_template('tutorhome.html')
-   # else:
+    else:
         return render_template('error.html',error = 'Unauthorized Access')
 
 @app.route('/managerhome')
 def managerHome():
-    #if session.get('user'):
+    if session.get('user'):
         return render_template('managerhome.html')
-   # else:
+    else:
         return render_template('error.html',error = 'Unauthorized Access')
 
 @app.route('/studenthome')
 def studentHome():
-    #if session.get('user'):
+    if session.get('user'):
         return render_template('studenthome.html')
-   # else:
+    else:
         return render_template('error.html',error = 'Unauthorized Access')
 
 @app.route('/test')
@@ -119,18 +119,33 @@ def validateLogin():
     try:
         _username = request.form['inputEmail']
         _password = request.form['inputPassword']
+        _userType = request.form['user-type']
 
         #Connect to MySQL
         con = mysql.connect()
         cursor = con.cursor()
-        cursor.callproc('sp_validateLogin', (_username,))
+
+        if _userType == "Student":
+            cursor.callproc('sp_validateStudentLogin', (_username,))
+        elif _userType == "Tutor":
+            cursor.callproc('sp_validateTutorLogin', (_username,))
+        elif _userType == "Manager":
+            cursor.callproc('sp_validateManagerLogin', (_username,))
+        else:
+            return render_template('error.html',error = 'No User Type Selected.')
+
         data = cursor.fetchall()
 
         #Check Login Creds
         if len(data) > 0:
             if check_password_hash(str(data[0][3]),_password):
                 session['user'] = data[0][0]
-                return redirect('/userhome')
+                if _userType == "Student":
+                    return redirect('/studenthome')
+                elif _userType == "Tutor":
+                    return redirect('/tutorhome')
+                elif _userType == "Manager":
+                    return redirect('/managerhome')
             else:
                 return render_template('error.html',error = 'Wrong Email address or Password.')
         else:
