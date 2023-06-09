@@ -60,6 +60,11 @@ def studentHome():
    # else:
         return render_template('error.html',error = 'Unauthorized Access')
 
+@app.route('/test')
+def test():
+        return render_template('signuptemp.html')
+
+
 @app.route('/logout')
 def logout():
     session.pop('user',None)
