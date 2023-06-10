@@ -109,6 +109,9 @@ def studentHome():
 def test():
         return render_template('studentSignup.html')
 
+@app.route('/tutorInfo')
+def tutorSelection():
+        return render_template('tutorSelection.html')
 
 @app.route('/logout')
 def logout():
