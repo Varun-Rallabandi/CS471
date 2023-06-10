@@ -111,7 +111,16 @@ def test():
 
 @app.route('/tutorInfo')
 def tutorSelection():
-        return render_template('tutorSelection.html')
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = "SELECT user_name FROM tbl_tutoruser"
+        cursor.execute(query)
+        tutorsList = cursor.fetchall()
+        cursor.close()
+
+        print(tutorsList)
+
+        return render_template('tutorSelection.html', tutors=tutorsList)
 
 @app.route('/logout')
 def logout():

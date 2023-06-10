@@ -42,6 +42,11 @@
 				<div class="container-fluid py-5">
 					<h1 class="text-center fw-bold display-5">Welcome Student!</h1>
 					<h2 class="text-center fw-bold display-5">Here is a list of available tutors!</h2>
+					<ul>
+						{% for tutor in tutors %}
+						<li>{{ tutor[0] }}</li>
+						{% endfor %}
+					</ul>
 				</div>
 			</div>
 			        
