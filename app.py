@@ -69,7 +69,9 @@ def studentSignup():
 def tutorSignup():
     return render_template('tutorSignup.html')
 
-#tutor sign up
+@app.route('/managerSignup')
+def managerSignup():
+    return render_template('managerSignup.html')
 
 @app.route('/signin')
 def showSignin():
@@ -162,36 +164,112 @@ def validateLogin():
 
 @app.route('/api/studentSignup', methods=['POST'])
 def studentSignUp():
-    # read the posted values from the UI 
-    _name = request.form['inputName']
-    _email = request.form['inputEmail']
-    _password = request.form['inputPassword']
-    _class1 = request.form['class1']
-    _class2 = request.form['class2']
-    _class3 = request.form['class3']
-    _class4 = request.form['class4']
-    _time1 = request.form['time1']
-    _time2 = request.form['time2']
-    _time3 = request.form['time3']
-    _time4 = request.form['time4']
-    _repeat = request.form['repeat']
+    try:
+        # read the posted values from the UI 
+        _name = request.form['inputName']
+        _email = request.form['inputEmail']
+        _password = request.form['inputPassword']
+        _time1 = request.form['inputTime1']
+        _time2 = request.form['inputTime2']
+        _time3 = request.form['inputTime3']
+        _class1 = request.form['inputClass1']
+        _class2 = request.form['inputClass2']
+        _class3 = request.form['inputClass3']
+        _repeat = request.form['inputRepeat']
 
-    # validate the received values
-    if _name and _email and _password and _class1 and _class2 and _class3 and _class4 and _time1 and _time2 and _time3 and _time4 and _repeat:
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        _hashed_password = generate_password_hash(_password)
-        cursor.callproc('sp_createStudent',(_name, _email, _hashed_password, _class1, _class2, _class3, _class4, _time1, _time2, _time3, _time4, _repeat))
-        data = cursor.fetchall()
+        # validate the received values
+        if _name and _email and _password and _time1 and _time2 and _time3 and _class1 and _class2 and _class3 and _repeat:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            _hashed_password = generate_password_hash(_password)
+            cursor.callproc('sp_createStudent',(_name, _email, _hashed_password, _time1, _time2, _time3, _class1, _class2, _class3, _repeat))
+            data = cursor.fetchall()
 
-        if len(data) == 0:
-            conn.commit()
-            return json.dumps({'message':'User created successfully !'})
+            if len(data) == 0:
+                conn.commit()
+                return json.dumps({'message':'User created successfully !'})
+            else:
+                return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
         else:
-            return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
-    else:
-        return json.dumps({'error': 'Enter the required fields'}), 400
+            return json.dumps({'error': 'Enter the required fields'}), 400
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()    
 
+@app.route('/api/tutorSignup', methods=['POST'])
+def tutorSignUp():
+    try:
+        _name = request.form['inputName']
+        _email = request.form['inputEmail']
+        _password = request.form['inputPassword']
+        _class1 = int(request.form['class1'])
+        _class2 = int(request.form['class2'])
+        _class3 = int(request.form['class3'])
+        _class4 = int(request.form['class4'])
+        _time1 = int(request.form['time1'])
+        _time2 = int(request.form['time2'])
+        _time3 = int(request.form['time3'])
+        _time4 = int(request.form['time4'])
+        _qualifications = request.form['qualifications']
+
+        # validate the received values
+        if _name and _email and _password:
+
+            # All Good, let's call MySQL
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            _hashed_password = generate_password_hash(_password)
+            cursor.callproc('sp_createTutor', (_name, _email, _hashed_password, _class1, _class2, _class3, _class4, _time1, _time2, _time3, _time4, _qualifications))
+            data = cursor.fetchall()
+
+            if len(data) == 0:
+                conn.commit()
+                return json.dumps({'message': 'User created successfully !'})
+            else:
+                return json.dumps({'error': str(data[0])})
+        else:
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route('/api/managerSignup', methods=['POST'])
+def managerSignUp():
+    try:
+        _name = request.form['inputName']
+        _email = request.form['inputEmail']
+        _password = request.form['inputPassword']
+
+        # validate the received values
+        if _name and _email and _password:
+
+            # All Good, let's call MySQL
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            _hashed_password = generate_password_hash(_password)
+            cursor.callproc('sp_createManager', (_name, _email, _hashed_password))
+            data = cursor.fetchall()
+
+            if len(data) == 0:
+                conn.commit()
+                return json.dumps({'message': 'User created successfully !'})
+            else:
+                return json.dumps({'error': str(data[0])})
+        else:
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()
 
 
 if __name__ == "__main__":
