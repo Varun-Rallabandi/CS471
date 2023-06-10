@@ -105,9 +105,9 @@ def studentHome():
     else:
         return render_template('error.html',error = 'Unauthorized Access')
 
-@app.route('/test')
-def test():
-        return render_template('studentSignup.html')
+@app.route('/whiteboard')
+def whiteBoard():
+        return render_template('whiteBoard.html')
 
 @app.route('/tutorInfo')
 def tutorSelection():
