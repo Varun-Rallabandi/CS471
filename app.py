@@ -169,12 +169,12 @@ def studentSignUp():
         _name = request.form['inputName']
         _email = request.form['inputEmail']
         _password = request.form['inputPassword']
-        _time1 = request.form['inputTime1']
-        _time2 = request.form['inputTime2']
-        _time3 = request.form['inputTime3']
-        _class1 = request.form['inputClass1']
-        _class2 = request.form['inputClass2']
-        _class3 = request.form['inputClass3']
+        _time1 = (request.form['inputTime1']).upper()
+        _time2 = (request.form['inputTime2']).upper()
+        _time3 = (request.form['inputTime3']).upper()
+        _class1 = (request.form['inputClass1']).upper()
+        _class2 = (request.form['inputClass2']).upper()
+        _class3 = (request.form['inputClass3']).upper()
         _repeat = request.form['inputRepeat']
 
         # validate the received values
@@ -204,12 +204,12 @@ def tutorSignUp():
         _name = request.form['inputName']
         _email = request.form['inputEmail']
         _password = request.form['inputPassword']
-        _time1 = request.form['inputTime1']
-        _time2 = request.form['inputTime2']
-        _time3 = request.form['inputTime3']
-        _class1 = request.form['inputClass1']
-        _class2 = request.form['inputClass2']
-        _class3 = request.form['inputClass3']
+        _time1 = (request.form['inputTime1']).upper()
+        _time2 = (request.form['inputTime2']).upper()
+        _time3 = (request.form['inputTime3']).upper()
+        _class1 = (request.form['inputClass1']).upper()
+        _class2 = (request.form['inputClass2']).upper()
+        _class3 = (request.form['inputClass3']).upper()
         _qualifications = request.form['qualifications']
         # validate the received values
         if _name and _email and _password and _time1 and _time2 and _time3 and _class1 and _class2 and _class3 and _qualifications:
