@@ -42,11 +42,30 @@
 				<div class="container-fluid py-5">
 					<h1 class="text-center fw-bold display-5">Welcome Student!</h1>
 					<h2 class="text-center fw-bold display-5">Here is a list of available tutors!</h2>
-					<ul>
+					<div class="row">
 						{% for tutor in tutors %}
-						<li>{{ tutor[0] }}</li>
+						<div class="col-md-10">
+							<div class="card mb-3">
+								<div class="card-body">
+									<h5 class="card-title">{{ tutor[0] }}</h5>
+									<p class="card-text">{{ tutor[1] }}</p>
+								</div>
+							</div>
+						</div>
 						{% endfor %}
-					</ul>
+					</div>
+					<h3 class="text-dark fw-bold display-5" style="font-size: medium;"> Request Tutor Change</h3> <br>
+					<fieldset>
+						<legend>Please write what Tutor and why you would like the switch</legend>
+						<input
+						type="text"
+						name=""
+						id="qualifications"
+						class="form-control"
+						placeholder="Explanation (max 4500 words)"
+						required
+					/>
+					  </fieldset>
 				</div>
 			</div>
 			        
