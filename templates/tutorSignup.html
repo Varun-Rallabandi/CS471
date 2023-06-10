@@ -82,27 +82,85 @@
 							required
 						/>
 						<br>
+						<label for="inputTime" class="sr-only"
+							>Select what times you are available for tutoring (Y for yes and N for no)</label>
+						<br>
+						<label for="inputTime1" class="sr-only"
+							>Time A: Morning (8:00 am - 12:00 pm)</label>
+						        <input
+							type="text"
+							name="inputTime1"
+							id="inputTime1"
+							class="form-control"
+							placeholder="input 'Y' if available"
+							required
+						/>
+						<label for="inputTime2" class="sr-only"
+							>Time B: Afternoon (12:00 pm - 4:00 pm)</label>
+						        <input
+							type="text"
+							name="inputTime2"
+							id="inputTime2"
+							class="form-control"
+							placeholder="input 'Y' if available"
+							required
+						/>		
+						<label for="inputTime3" class="sr-only"
+							>Time C: Evening (4:00 pm - 8:00 pm)</label>
+						        <input
+							type="text"
+							name="inputTime3"
+							id="inputTime3"
+							class="form-control"
+							placeholder="input 'Y' if available"
+							required
+						/>		
+						<br>
+						<label for="inputClass" class="sr-only"
+							>Select what classes you can tutor(Y for yes and N for no)</label>
+						<br>
+						<label for="inputClass1" class="sr-only"
+							>CS 471 - Software Engineering</label>
+						        <input
+							type="text"
+							name="inputClass1"
+							id="inputClass1"
+							class="form-control"
+							placeholder="input 'Y' if available"
+							required
+						/>
+						<label for="inputClass2" class="sr-only"
+							>CS 231 - Programing Languages</label>
+						        <input
+							type="text"
+							name="inputClass2"
+							id="inputClass2"
+							class="form-control"
+							placeholder="input 'Y' if available"
+							required
+						/>		
+						<label for="inputClass3" class="sr-only"
+							>CS 101 - Java 1</label>
+						        <input
+							type="text"
+							name="inputClass3"
+							id="inputClass3"
+							class="form-control"
+							placeholder="input 'Y' if available"
+							required
+						/>
+						<br>
 						<fieldset>
-							<legend>Please select which classes you would like to tutor</legend>
-							<input type="checkbox" name="class1" id="class1" value="1" /><label for="class1">MATH 101 - Calc 1</label><br />
-							<input type="checkbox" name="class2" id="class2" value="1"  /><label for="class2">PHSY 101 - Physics 1</label><br />
-							<input type="checkbox" name="class3" id="class3" value="1" /><label for="class3">COMM 101 - Reading</label><br />
-							<input type="checkbox" name="class4" id="class4" value="1" /><label for="class4">CS 471 - Software Engineering</label><br />
-					  </fieldset>
-					  <br>
-					  <fieldset>
-						  <legend>Please select the times you are available</legend>
-						  <input type="checkbox" name="time1" id="time1" value="1" /><label for="time1">Time A: 10 AM - 12 PM</label><br />
-						  <input type="checkbox" name="time2" id="time2" value="1"  /><label for="time2">Time B: 12 PM - 2 PM</label><br />
-						  <input type="checkbox" name="time3" id="time3" value="1" /><label for="time3">Time C: 2 PM - 4 PM</label><br />
-						  <input type="checkbox" name="time4" id="time4" value="1" /><label for="time4">Time D: 4 PM - 6 PM</label><br />
-					</fieldset>
-					<br>
-					<fieldset>
-						<legend>Please write what qualifies you to teach the selected courses</legend>
-						<textarea id="qualfications" name="qualfications" rows="4" cols="50"></textarea><br />
-				  </fieldset>
-					  <br><br>                  
+							<legend>Please write what qualifies you to teach the selected courses</legend>
+							<input
+							type="text"
+							name="qualifications"
+							id="qualifications"
+							class="form-control"
+							required
+						/>
+				  		</fieldset>
+					  	<br><br>                  
 						<button
 							class="btn btn-lg btn-primary btn-block"
 							type="submit"
