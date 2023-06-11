@@ -37,3 +37,23 @@ body {
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+    margin: 0;
+  }
+  
+  canvas {
+    border: 1px solid black;
+    cursor: crosshair;
+    margin-bottom: 1rem;
+  }
+  
+  button, select {
+    margin: 0.5rem;
+  }
+  

@@ -30,13 +30,17 @@ document.getElementById('back').addEventListener('click', () => {
 });
 
 function drawLine(e) {
-  if (!draw) return;
-  ctx.lineWidth = 5;
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = currentColor;
-
-  ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-}
+    if (!draw) return;
+    ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = currentColor;
+  
+    // Add window scroll positions to ensure proper coordinates
+    let x = e.clientX - canvas.offsetLeft + window.scrollX;
+    let y = e.clientY - canvas.offsetTop + window.scrollY;
+  
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+  }
