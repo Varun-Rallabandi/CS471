@@ -115,6 +115,14 @@ def studentHome():
 def whiteBoard():
         return render_template('whiteBoard.html')
 
+@app.route('/studentRating')
+def studentRating():
+        return render_template('createStudentRating.html')
+
+@app.route('/tutorRating')
+def tutorRating():
+        return render_template('createTutorRating.html')
+
 @app.route('/tutorInfo')
 def tutorSelection():
         con = mysql.connect()
@@ -271,6 +279,66 @@ def managerSignUp():
             if len(data) == 0:
                 conn.commit()
                 return json.dumps({'message':'User created successfully !'})
+            else:
+                return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
+        else:
+            return json.dumps({'error': 'Enter the required fields'}), 400
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()    
+
+
+
+@app.route('/api/inputStudentRating', methods=['POST'])
+def inputStudentRating():
+    try:
+        # read the posted values from the UI 
+        _name = request.form['inputName']
+        _rating = request.form['inputRating']
+        _review = request.form['inputReview']
+        _class = request.form['inputClass']
+
+        # validate the received values
+        if _name and _rating and _review and _class:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('sp_createStudentRating',(_name, _rating, _review, _class,))
+            data = cursor.fetchall()
+
+            if len(data) == 0:
+                conn.commit()
+                return json.dumps({'message':'Student Rating created successfully !'})
+            else:
+                return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
+        else:
+            return json.dumps({'error': 'Enter the required fields'}), 400
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()    
+
+@app.route('/api/inputTutorRating', methods=['POST'])
+def inputTutorRating():
+    try:
+        # read the posted values from the UI 
+        _name = request.form['inputName']
+        _rating = request.form['inputRating']
+        _review = request.form['inputReview']
+        _class = request.form['inputClass']
+
+        # validate the received values
+        if _name and _rating and _review and _class:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('sp_createTutorRating',(_name, _rating, _review, _class,))
+            data = cursor.fetchall()
+
+            if len(data) == 0:
+                conn.commit()
+                return json.dumps({'message':'Tutor Rating created successfully !'})
             else:
                 return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
         else:
