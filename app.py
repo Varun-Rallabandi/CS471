@@ -349,6 +349,34 @@ def inputTutorRating():
         cursor.close()
         conn.close()    
 
+@app.route('/api/tutorRequest', methods=['POST'])
+def tutorRequest():
+    try:
+        # read the posted values from the UI 
+        _name = request.form['inputName']
+        _username = request.form['inputUsername']
+        _requestDescription = request.form['inputRequest']
+
+        # validate the received values
+        if _name and _username and _requestDescription:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('sp_createTutorRequest',(_name, _username, _requestDescription))
+            data = cursor.fetchall()
+
+            if len(data) == 0:
+                conn.commit()
+                return json.dumps({'message':'Tutor Request submitted successfully !'})
+            else:
+                return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
+        else:
+            return json.dumps({'error': 'Enter the required fields'}), 400
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()    
+
 
 if __name__ == "__main__":
     app.run()
