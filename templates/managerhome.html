@@ -28,7 +28,7 @@
 					</a>
 					<ul class="nav nav-pills">
 						<li class="nav-item">
-							<a href="/userhome" class="nav-link">Home</a>
+							<a href="/managerhome" class="nav-link">Home</a>
 						</li>
 						<li class="nav-item">
 							<a href="/logout" class="nav-link active">Logout</a>
@@ -44,13 +44,31 @@
 					<h2 class="text-center fw-bold display-5">You are a Manager!</h2>
 				</div>
 			</div>
+			<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
+				<div class="container-fluid py-5">
+					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">Tutoring Classes!</h1>
+					<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all STUDENTS <!--classes currently with Tutors and Students --></h2> <br>
+					<div class="row">
+						{% for student in students %}
+						<div class="col-md-10">
+							<div class="card mb-3">
+								<div class="card-body">
+									<h5 class="card-title">{{ student[0] }}</h5>
+									<!-- p class="card-text">{{ student[1] }}</p> -->
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
 			        
 			<footer class="footer">
 				            
 				<p>&copy; Team 2 Spring 2023</p>
 				        
 			</footer>
-			    
+
 		</div>
 	</body>
 </html>

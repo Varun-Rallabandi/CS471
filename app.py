@@ -94,7 +94,13 @@ def tutorHome():
 @app.route('/managerhome')
 def managerHome():
     if session.get('user'):
-        return render_template('managerhome.html')
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = "SELECT user_name FROM tbl_studentuser"
+        cursor.execute(query)
+        studentList = cursor.fetchall()
+        cursor.close()
+        return render_template('managerhome.html', students = studentList)
     else:
         return render_template('error.html',error = 'Unauthorized Access')
 
