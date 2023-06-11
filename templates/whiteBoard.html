@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />    
-        <title>MyTutor5000 App - Whiteboard</title>
-        <link rel = stylesheet href = "../static/whiteBoard.css"/>
-
-    <head>
-    <body>
-        <button onclick="resize()">Clear Screen</button>
-        <canvas id ="canvas"></canvas>
-        <script src ="../static/whiteBoard.js"/></script>
-    </body>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../static/whiteBoard.css">
+</head>
+<body>
+  <canvas id="whiteboard" width="800" height="600"></canvas>
+  <button id="clear">Clear</button>
+  <select id="colorPicker">
+    <option value="black">Black</option>
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <option value="green">Green</option>
+  </select>
+  <button id="back">Home</button>
+  <script src="../static/whiteBoard.js"></script>
+</body>
 </html>
