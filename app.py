@@ -103,11 +103,29 @@ def managerHome():
     if session.get('user'):
         con = mysql.connect()
         cursor = con.cursor()
-        query = "SELECT user_name FROM tbl_studentuser"
+        query = "SELECT user_name, user_username FROM tbl_studentuser"
         cursor.execute(query)
         studentList = cursor.fetchall()
         cursor.close()
         return render_template('managerhome.html', students = studentList)
+    else:
+        return render_template('error.html',error = 'Unauthorized Access')
+    
+@app.route('/managerViewUsers')
+def managerViewUserLists():
+    if session.get('user'):
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = "SELECT user_name, user_username FROM tbl_studentuser"
+        cursor.execute(query)
+        studentList = cursor.fetchall()
+        cursor.close()
+        cursor = con.cursor()
+        query = "SELECT user_name, user_username FROM tbl_tutoruser"
+        cursor.execute(query)
+        tutorList = cursor.fetchall()
+        cursor.close()
+        return render_template('managerViewUsers.html', students = studentList, tutors = tutorList)
     else:
         return render_template('error.html',error = 'Unauthorized Access')
 
