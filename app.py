@@ -1,5 +1,4 @@
-#MARVIN LOPEZ BUCKET LIST PYTHON APP
-
+#SWE Group 2 Project
 #IMPORT STATEMENTS
 from flask import Flask, render_template, json, request, session, redirect
 from flaskext.mysql import MySQL
@@ -12,34 +11,6 @@ import smtplib
 
 # globalUsername = ""
 # globalUserType = ""
-
-'''email_sender = 'tutorg76@gmail.com'
-email_password = 'agmssublzuxxrany'
-
-email_receiver = 'tade2477@kettering.edu'
-
-subject = "WORK ON THE FUCKING PROJECT"
-body = """
-Every time this email is ignored, its a $10 fine. 
-Hugs and Kisses - MyTutor5000 :)
-
-p.s Emily is coming for you >:(
-
-and come to sac meeting - Varun
-"""
-
-em = EmailMessage()
-em['From'] = email_sender
-em['To'] = email_receiver
-em['subject'] = subject
-em.set_content(body)
-
-context = ssl.create_default_context()
-
-with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-     smtp.login(email_sender, email_password)
-     smtp.sendmail(email_sender, email_receiver, em.as_string())
-'''
 
 #DEFINING APP
 app = Flask(__name__)
