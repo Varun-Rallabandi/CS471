@@ -94,7 +94,23 @@ def userHome():
 @app.route('/tutorhome')
 def tutorHome():
     if session.get('user'):
-        return render_template('tutorhome.html')
+        current_user = session['user']
+        print("Current User:", current_user)
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = f"SELECT * FROM tbl_tutoruser WHERE user_id = %s"
+        cursor.execute(query, (current_user,))
+        username = cursor.fetchone()[2]
+        cursor.close()
+        print("Username: ", username)
+
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = f"SELECT * FROM tbl_tutorsessions WHERE tutor_username = %s"
+        cursor.execute(query, (username,))
+        user_sessions = cursor.fetchall()
+        cursor.close()
+        return render_template('tutorhome.html', user_sessions = user_sessions)
     else:
         return render_template('error.html',error = 'Unauthorized Access')
 
@@ -143,7 +159,23 @@ def tutorRequests():
 @app.route('/studenthome')
 def studentHome():
     if session.get('user'):
-        return render_template('studenthome.html')
+        current_user = session['user']
+        print("Current User:", current_user)
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = f"SELECT * FROM tbl_studentuser WHERE user_id = %s"
+        cursor.execute(query, (current_user,))
+        username = cursor.fetchone()[2]
+        cursor.close()
+        print("Username: ", username)
+
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = f"SELECT * FROM tbl_tutorsessions WHERE student_username = %s"
+        cursor.execute(query, (username,))
+        user_sessions = cursor.fetchall()
+        cursor.close()
+        return render_template('studenthome.html', user_sessions = user_sessions)
     else:
         return render_template('error.html',error = 'Unauthorized Access')
 
@@ -465,6 +497,8 @@ def inputTutorSession():
     finally:
         cursor.close()
         conn.close()    
+
+
 
 if __name__ == "__main__":
     app.run()

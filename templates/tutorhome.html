@@ -47,11 +47,23 @@
 			<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
 				<div class="container-fluid py-5">
 					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">List of Classes!</h1>
-					<h2 class="text-center fw-bold display-5" style="font-size: 20px;">(implement stuff)</h2>
 				</div>
 			</div>
-			        
-
+			<div class="row">
+				<div class="col-md-10">
+					{% for user_session in user_sessions %}
+					<div class="card mb-3">
+						<div class="card-body">
+							<h5 class="card-title">Session</h5>
+							<p class="card-text">Student Name: {{ user_session[3] }}</p>
+							<p class="card-text">Student Username: {{ user_session[4] }}</p>
+							<p class="card-text">Class: {{ user_session[5] }}</p>
+							<p class="card-text">Time: {{ user_session[6] }}</p>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>	
 			<br>
 			<div>
 				<p>

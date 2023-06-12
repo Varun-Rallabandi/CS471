@@ -48,10 +48,23 @@
 				</div>
 				<div class="studentClass" style="background-color: rgba(56, 56, 255, 0.6); border: 2px solid black; border-radius: 10px;">
 					<h1 class="text-center fw-bold display-5" style="font-size: 50px;">Enrolled Classes</h1>
-					<h2 class="text-center fw-bold display-5" style="font-size: 25px; font-family: 'Times New Roman', Times, serif;">Implement Classes UI</h2>
 				</div>
 			</div>
-
+			<div class="row">
+				<div class="col-md-10">
+					{% for user_session in user_sessions %}
+					<div class="card mb-3">
+						<div class="card-body">
+							<h5 class="card-title">Session</h5>
+							<p class="card-text">Tutor Name: {{ user_session[1] }}</p> 
+							<p class="card-text">Tutor Username: {{ user_session[2] }}</p> 
+							<p class="card-text">Class: {{ user_session[5] }}</p>
+							<p class="card-text">Time: {{ user_session[6] }}</p>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>		  
 			<br>
 			<div>
 				<p>
