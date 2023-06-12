@@ -77,6 +77,10 @@ def managerSignup():
 def showSignin():
     return render_template('signin.html')
 
+@app.route('/success')
+def showSuccess():
+    return render_template('successPage.html')
+
 @app.route('/userhome')
 def userHome():
     if session.get('user'):
