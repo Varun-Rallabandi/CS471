@@ -48,7 +48,7 @@ app = Flask(__name__)
 mysql = MySQL()
 # MySQL configurations 
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'ItalianDressing1!'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
 app.config['MYSQL_DATABASE_DB'] = 'bucketlist'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -157,11 +157,23 @@ def videoConference():
 
 @app.route('/studentRating')
 def studentRating():
-        return render_template('createStudentRating.html')
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = "SELECT student_name, rating_value, review_text, tutored_class FROM tbl_studentratings"
+        cursor.execute(query)
+        ratingsList = cursor.fetchall()
+        cursor.close()
+        return render_template('createStudentRating.html', ratings=ratingsList)
 
 @app.route('/tutorRating')
 def tutorRating():
-        return render_template('createTutorRating.html')
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = "SELECT tutor_name, rating_value, review_text, tutored_class FROM tbl_tutorratings"
+        cursor.execute(query)
+        ratingsList = cursor.fetchall()
+        cursor.close()
+        return render_template('createTutorRating.html', ratings = ratingsList)
 
 @app.route('/tutorInfo')
 def tutorSelection():

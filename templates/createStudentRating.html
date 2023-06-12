@@ -31,21 +31,38 @@
 
 					<ul class="nav nav-pills">
 						<li class="nav-item">
-							<a href="/" class="nav-link">Home</a>
+							<a href="/tutorhome" class="nav-link">Home</a>
 						</li>
 						<li class="nav-item">
-							<a href="/signup" class="nav-link active" aria-current="page"
-								>Signup</a
-							>
-						</li>
-						<li class="nav-item">
-							<a href="/signin" class="nav-link">Sign In</a>
+							<a href="/logout" class="nav-link active">Logout</a>
 						</li>
 					</ul>
 					                        
 				</nav>
 				        
 			</div>
+
+			<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
+				<div class="container-fluid py-5">
+					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">Student Ratings!</h1>
+					<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all RATINGS <!--classes currently with Tutors and Students --></h2> <br>
+					<div class="row">
+						{% for rating in ratings %}
+						<div class="col-md-10">
+							<div class="card mb-3">
+								<div class="card-body">
+									<h5 class="card-title">{{ rating[0] }}</h5>
+									<p class="card-text">{{ rating[1] }}</p> 
+									<p class="card-text">{{ rating[2] }}</p> 
+									<p class="card-text">{{ rating[3] }}</p> 
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
 			<div class="bg-light rounded-3 mb-4 p-5">
 				<div class="container-fluid py-5">
 					<h1 class="text-center fw-bold display-5">Rate a Student!</h1>
