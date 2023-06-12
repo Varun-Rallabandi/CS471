@@ -80,6 +80,10 @@ def managerSignup():
 def showSignin():
     return render_template('signin.html')
 
+@app.route('/success')
+def showSuccess():
+    return render_template('successPage.html')
+
 @app.route('/userhome')
 def userHome():
     if session.get('user'):
@@ -128,6 +132,10 @@ def studentHome():
 @app.route('/whiteboard')
 def whiteBoard():
         return render_template('whiteBoard.html')
+
+@app.route('/videoconference')
+def videoConference():
+        return render_template('videocon.html')
 
 @app.route('/studentRating')
 def studentRating():
