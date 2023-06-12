@@ -49,12 +49,13 @@
 								<div class="card-body">
 									<h5 class="card-title">{{ tutor[0] }}</h5>
 									<p class="card-text">{{ tutor[1] }}</p>
+									<p class="card-text">{{ tutor[2] }}</p>
 								</div>
 							</div>
 						</div>
 						{% endfor %}
 					</div>
-					<h3 class="text-dark fw-bold display-5" style="font-size: medium;"> Request Tutor Change</h3> <br>
+					<h3 class="text-dark fw-bold display-5" style="font-size: medium;"> Request Tutor Update</h3> <br>
 					<form id="form-signin" action="/api/inputStudentRating" method="POST">
 						        <label for="inputName" class="sr-only">Name:</label>
 						        <input
@@ -76,6 +77,26 @@
 							required
 							autofocus
 						/>
+						<label for="inputTutorName" class="sr-only">Tutor Name:</label>
+						        <input
+							type="name"
+							name="inputTutorName"
+							id="inputTutorName"
+							class="form-control"
+							placeholder="Enter the Tutor name"
+							required
+							autofocus
+						/>
+						        <label for="inputTutorUsername" class="sr-only">Tutor Username:</label>
+						        <input
+							type="text"
+							name="inputTutorUsername"
+							id="inputTutorUsername"
+							class="form-control"
+							placeholder="Enter the Tutor Username"
+							required
+							autofocus
+						/>
 						        <label for="inputRequest" class="sr-only">Write your request!</label>
 						        <input
 							type="text"
@@ -84,7 +105,7 @@
 							class="form-control"
 							placeholder="Write your request here..."
 							required
-						/>
+						/><br>
 						                  <button
 							class="btn btn-lg btn-primary btn-block"
 							type="submit"

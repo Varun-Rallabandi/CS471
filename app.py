@@ -133,7 +133,7 @@ def managerViewUserLists():
 def tutorRequests():
         con = mysql.connect()
         cursor = con.cursor()
-        query = "SELECT req_name, req_username, req_description FROM tbl_tutorrequest"
+        query = "SELECT req_name, req_username, req_tutor_name, req_tutor_username, req_description FROM tbl_tutorrequest"
         cursor.execute(query)
         requestList = cursor.fetchall()
         cursor.close()
@@ -167,7 +167,7 @@ def tutorRating():
 def tutorSelection():
         con = mysql.connect()
         cursor = con.cursor()
-        query = "SELECT user_name, qualifications FROM tbl_tutoruser"
+        query = "SELECT user_name, user_username, qualifications FROM tbl_tutoruser"
         cursor.execute(query)
         tutorsList = cursor.fetchall()
         cursor.close()
@@ -398,13 +398,15 @@ def tutorRequest():
         # read the posted values from the UI 
         _name = request.form['inputName']
         _username = request.form['inputUsername']
+        _tutorName = request.form['inputTutorName']
+        _tutorUsername = request.form['inputTutorUsername']
         _requestDescription = request.form['inputRequest']
 
         # validate the received values
         if _name and _username and _requestDescription:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.callproc('sp_createTutorRequest',(_name, _username, _requestDescription))
+            cursor.callproc('sp_createTutorRequest',(_name, _username, _tutorName, _tutorUsername, _requestDescription))
             data = cursor.fetchall()
 
             if len(data) == 0:
