@@ -45,44 +45,52 @@
 				</div>
 			</div>
 
-			<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
-				<div class="container-fluid py-5">
-					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">List of Students!</h1>
-					<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all STUDENTS <!--classes currently with Tutors and Students --></h2> <br>
-					<div class="row">
-						{% for student in students %}
-						<div class="col-md-10">
+			<div class="container-fluid">
+				<div class="row">
+				  <div class="col-md-6">
+					<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
+					  <div class="container-fluid py-5">
+						<h1 class="text-center fw-bold display-5" style="font-size: 40px;">List of Students!</h1>
+						<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all STUDENTS</h2> <br>
+						<div class="row">
+						  {% for student in students %}
+						  <div class="col-md-12">
 							<div class="card mb-3">
-								<div class="card-body">
-									<h5 class="card-title">{{ student[0] }}</h5>
-									<p class="card-text">{{ student[1] }}</p> 
-								</div>
+							  <div class="card-body">
+								<h5 class="card-title">{{ student[0] }}</h5>
+								<p class="card-text">{{ student[1] }}</p>
+							  </div>
 							</div>
+						  </div>
+						  {% endfor %}
 						</div>
-						{% endfor %}
+					  </div>
 					</div>
-				</div>
-			</div>
-	
-			<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
-				<div class="container-fluid py-5">
-					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">List of Tutors!</h1>
-					<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all TUTORS <!--classes currently with Tutors and Students --></h2> <br>
-					<div class="row">
-						{% for tutor in tutors %}
-						<div class="col-md-10">
+				  </div>
+			  
+				  <div class="col-md-6">
+					<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
+					  <div class="container-fluid py-5">
+						<h1 class="text-center fw-bold display-5" style="font-size: 40px;">List of Tutors!</h1>
+						<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all TUTORS</h2> <br>
+						<div class="row">
+						  {% for tutor in tutors %}
+						  <div class="col-md-12">
 							<div class="card mb-3">
-								<div class="card-body">
-									<h5 class="card-title">{{ tutor[0] }}</h5>
-									<p class="card-text">{{ tutor[1] }}</p> 
-								</div>
+							  <div class="card-body">
+								<h5 class="card-title">{{ tutor[0] }}</h5>
+								<p class="card-text">{{ tutor[1] }}</p>
+							  </div>
 							</div>
+						  </div>
+						  {% endfor %}
 						</div>
-						{% endfor %}
+					  </div>
 					</div>
+				  </div>
 				</div>
-			</div>
-
+			  </div>
+			  
 			        
 			<footer class="footer">
 				            
