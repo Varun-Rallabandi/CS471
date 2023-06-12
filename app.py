@@ -48,7 +48,7 @@ app = Flask(__name__)
 mysql = MySQL()
 # MySQL configurations 
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'password!'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'ItalianDressing1!'
 app.config['MYSQL_DATABASE_DB'] = 'bucketlist'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -103,11 +103,11 @@ def managerHome():
     if session.get('user'):
         con = mysql.connect()
         cursor = con.cursor()
-        query = "SELECT user_name, user_username FROM tbl_studentuser"
+        query = "SELECT tutor_name, tutor_username, student_name, student_username, tutor_class, session_time FROM tbl_tutorsessions"
         cursor.execute(query)
-        studentList = cursor.fetchall()
+        sessionList = cursor.fetchall()
         cursor.close()
-        return render_template('managerhome.html', students = studentList)
+        return render_template('managerhome.html', sessions = sessionList)
     else:
         return render_template('error.html',error = 'Unauthorized Access')
     
@@ -420,6 +420,37 @@ def tutorRequest():
         cursor.close()
         conn.close()    
 
+
+@app.route('/api/inputTutorSession', methods=['POST'])
+def inputTutorSession():
+    try:
+        # read the posted values from the UI 
+        _tutor_name = request.form['inputTutorName']
+        _tutor_username = request.form['inputTutorUsername']
+        _student_name = request.form['inputStudentName']
+        _student_username = request.form['inputStudentUsername']
+        _class = request.form['inputClass']
+        _time = request.form['inputTime']
+
+        # validate the received values
+        if _tutor_name and _tutor_username and _student_name and _student_username and _class and _time:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('sp_createTutorSession',(_tutor_name, _tutor_username, _student_name, _student_username, _class, _time))
+            data = cursor.fetchall()
+
+            if len(data) == 0:
+                conn.commit()
+                return json.dumps({'message':'Tutor Session created successfully !'})
+            else:
+                return json.dumps({'error': 'Database error: ' + str(data[0])}), 400  # 400 means 'Bad Request'
+        else:
+            return json.dumps({'error': 'Enter the required fields'}), 400
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()    
 
 if __name__ == "__main__":
     app.run()

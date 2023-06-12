@@ -43,6 +43,82 @@
 					<h1 class="text-center fw-bold display-5">These are the current Tutoring Requests</h1>
 				</div>
 			</div>
+
+			<div class="bg-light rounded-3 mb-4 p-5">
+				<div class="container-fluid py-5">
+					<h1 class="text-center fw-bold display-5">Create a tutor Session!</h1>
+					<form id="form-signin" action="/api/inputTutorSession" method="POST">
+						        <label for="inputTutorName" class="sr-only">Tutor Name</label>
+						        <input
+							type="name"
+							name="inputTutorName"
+							id="inputTutorName"
+							class="form-control"
+							placeholder="Name"
+							required
+							autofocus
+						/>
+								<label for="inputTutorUsername" class="sr-only">Tutor Username</label>
+						        <input
+							type="name"
+							name="inputTutorUsername"
+							id="inputTutorUsername"
+							class="form-control"
+							placeholder="Username"
+							required
+							autofocus
+						/>
+						        <label for="inputStudentName" class="sr-only">Student Name</label>
+						        <input
+							type="name"
+							name="inputStudentName"
+							id="inputStudentName"
+							class="form-control"
+							placeholder="Name"
+							required
+							autofocus
+						/>
+								<label for="inputStudentUsername" class="sr-only">Student Username</label>
+						        <input
+							type="name"
+							name="inputStudentUsername"
+							id="inputStudentUsername"
+							class="form-control"
+							placeholder="Username"
+							required
+							autofocus
+						/>
+						        <label for="inputClass" class="sr-only">Tutor Class</label>
+						        <input
+							type="text"
+							name="inputClass"
+							id="inputClass"
+							class="form-control"
+							placeholder="CS101, etc..."
+							required
+							autofocus
+						/>
+						        <label for="inputTime" class="sr-only">Session Time</label>
+						        <input
+							type="text"
+							name="inputTime"
+							id="inputTime"
+							class="form-control"
+							placeholder="8am, 4pm, etc..."
+							required
+							autofocus
+						/><br>
+						                  <button
+							class="btn btn-lg btn-primary btn-block"
+							type="submit"
+						>
+							Sign up
+						</button>
+						      
+					</form>
+				</div>
+			</div>
+			
 			<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
 				<div class="container-fluid py-5">
 					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">Tutoring Requests!</h1>

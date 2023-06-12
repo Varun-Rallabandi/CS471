@@ -46,15 +46,20 @@
 			</div>
 			<div class="tutorClass" style="background-color: rgba(0, 17, 255, 0.5); border: 2px solid black; border-radius: 10px;">
 				<div class="container-fluid py-5">
-					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">Tutoring Classes!</h1>
-					<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all STUDENTS <!--classes currently with Tutors and Students --></h2> <br>
+					<h1 class="text-center fw-bold display-5" style="font-size: 40px;">Tutoring Sessions!</h1>
+					<h2 class="text-center fw-bold display-5" style="font-size: 20px;">List of all SESSIONS <!--classes currently with Tutors and Students --></h2> <br>
 					<div class="row">
-						{% for student in students %}
+						{% for session in sessions %}
 						<div class="col-md-10">
 							<div class="card mb-3">
 								<div class="card-body">
-									<h5 class="card-title">{{ student[0] }}</h5>
-									<p class="card-text">{{ student[1] }}</p> 
+									<h5 class="card-title">Session</h5>
+									<p class="card-text">Tutor Name: {{ session[0] }}</p> 
+									<p class="card-text">Tutor Username: {{ session[1] }}</p> 
+									<p class="card-text">Student Name: {{ session[2] }}</p>
+									<p class="card-text">Student Username: {{ session[3] }}</p>
+									<p class="card-text">Class: {{ session[4] }}</p>
+									<p class="card-text">Time: {{ session[5] }}</p>
 								</div>
 							</div>
 						</div>
@@ -66,13 +71,10 @@
 			<div>
 				<p>
 					<a class="btn btn-lg btn-success" href="tutorRequests" role="button"
-						>Tutor Requests</a
-					>
-					<a class="btn btn-lg btn-success" href="signin" role="button"
-						>Tutor Session</a
+						>View Tutor Requests & Create Tutor Sessions</a
 					>
 					<a class="btn btn-lg btn-success" href="managerViewUsers" role="button"
-						>User Lists </a
+						>View User Lists </a
 					>
 				</p>
 			</div>
