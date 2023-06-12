@@ -119,6 +119,10 @@ def studentHome():
 def whiteBoard():
         return render_template('whiteBoard.html')
 
+@app.route('/videoconference')
+def videoConference():
+        return render_template('videocon.html')
+
 @app.route('/studentRating')
 def studentRating():
         return render_template('createStudentRating.html')
