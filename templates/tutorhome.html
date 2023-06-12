@@ -78,13 +78,21 @@
 					>
 				</p>
 			</div>
-
+			<div>
+				<form class="form-signin" action="/api/sendEmail" method="post">
+					<label for="inputEmail" class="sr-only">Email address</label>
+					<input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+					<br>
+					<button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">Send Email Reminder</button>
+				</form>
+			</div>
+			<br>
+			<br>
 			<footer class="footer">
 				            
 				<p>&copy; Team 2 Spring 2023</p>
 				        
 			</footer>
-			    
 		</div>
 	</body>
 </html>

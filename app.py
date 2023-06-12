@@ -498,7 +498,40 @@ def inputTutorSession():
         cursor.close()
         conn.close()    
 
+@app.route('/api/sendEmail', methods=['POST'])
+def sendEmailReminder():
+    # Read the posted values from the UI
+    _student_username = request.form['inputEmail']
 
+    email_sender = 'tutorg76@gmail.com'
+    email_password = 'agmssublzuxxrany'
+
+    email_receiver = _student_username
+
+    subject = "Upcoming Tutor Session"
+    body = """
+    Hello Student, 
+
+    This is a reminder to inform you about the upcoming Tutoring Session. 
+    For more information, please visit the website!
+
+    Thank you, 
+    MyTutor5000
+    """
+
+    em = EmailMessage()
+    em['From'] = email_sender
+    em['To'] = email_receiver
+    em['Subject'] = subject
+    em.set_content(body)
+
+    context = ssl.create_default_context()
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+        smtp.login(email_sender, email_password)
+        smtp.send_message(em)
+
+    return render_template('tutorSuccess.html', success = 'Email Sent Successfully')
 
 if __name__ == "__main__":
     app.run()
