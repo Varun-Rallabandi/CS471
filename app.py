@@ -10,6 +10,9 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 
+# globalUsername = ""
+# globalUserType = ""
+
 '''email_sender = 'tutorg76@gmail.com'
 email_password = 'agmssublzuxxrany'
 
@@ -45,7 +48,7 @@ app = Flask(__name__)
 mysql = MySQL()
 # MySQL configurations 
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password!'
 app.config['MYSQL_DATABASE_DB'] = 'bucketlist'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -104,6 +107,17 @@ def managerHome():
     else:
         return render_template('error.html',error = 'Unauthorized Access')
 
+@app.route('/tutorRequests')
+def tutorRequests():
+        con = mysql.connect()
+        cursor = con.cursor()
+        query = "SELECT req_name, req_username, req_description FROM tbl_tutorrequest"
+        cursor.execute(query)
+        requestList = cursor.fetchall()
+        cursor.close()
+        return render_template('tutorRequests.html', requests=requestList)
+
+
 @app.route('/studenthome')
 def studentHome():
     if session.get('user'):
@@ -158,12 +172,15 @@ def validateLogin():
             cursor.callproc('sp_validateManagerLogin', (_username,))
         else:
             return render_template('error.html',error = 'No User Type Selected.')
+        
 
         data = cursor.fetchall()
 
         #Check Login Creds
         if len(data) > 0:
             if check_password_hash(str(data[0][3]),_password):
+               # globalUsername = _username
+               # globalUserType = _userType
                 session['user'] = data[0][0]
                 if _userType == "Student":
                     return redirect('/studenthome')
